@@ -37,13 +37,11 @@ app.get('/api/competitions/:league/standings', async (req, res) => {
   }
 });
 
-// Serve static files from the React build (adjust if you're using a different build directory)
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'build')));
+    app.use(express.static(path.join(__dirname, '../soccer-site/build')));
   
-    // Catch-all route to serve index.html for any other route (important for client-side routing)
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'build', 'index.html'));
+      res.sendFile(path.join(__dirname, '../soccer-site/build', 'index.html'));
     });
   }
 
