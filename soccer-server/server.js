@@ -6,6 +6,13 @@ const port = process.env.PORT || 5005;
 
 app.use(cors());
 
+// Serve static files from the 'build' folder
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Handle all routes by returning the 'index.html' file for non-static requests
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.get('/api/competitions', async (req, res) => {
   try {
