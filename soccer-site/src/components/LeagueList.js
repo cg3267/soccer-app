@@ -23,6 +23,8 @@ function LeagueList() {
         const response = await axios.get(`${urlRoot}/competitions`);
        // console.log(response.data); 
          // console.log(response.data); 
+                // console.log(response.data); 
+
         const sortedLeagues = response.data.competitions.sort((a, b) => {
           const aIndex = preferredOrder.indexOf(a.id.toString());
           const bIndex = preferredOrder.indexOf(b.id.toString());
