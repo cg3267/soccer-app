@@ -2,6 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); 
 const app = express();
+const path = require('path');
+
 const port = process.env.PORT || 5005;
 
 app.use(cors());
@@ -34,6 +36,16 @@ app.get('/api/competitions/:league/standings', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// Serve static files from the React build (adjust if you're using a different build directory)
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'build')));
+  
+    // Catch-all route to serve index.html for any other route (important for client-side routing)
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    });
+  }
 
 // Start the server
 app.listen(port, () => {
