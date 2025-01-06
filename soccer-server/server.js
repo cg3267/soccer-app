@@ -38,10 +38,10 @@ app.get('/api/competitions/:league/standings', async (req, res) => {
 });
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../soccer-site/build')));
+    app.use(express.static(path.join(__dirname, '../soccer-app-frontend/build')));
   
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../soccer-site/build', 'index.html'));
+      res.sendFile(path.join(__dirname, '../soccer-app-frontend/build', 'index.html'));
     });
   }
 
